@@ -1,0 +1,47 @@
+{
+  "name": "@mistweaverco/mdsvex-shiki",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "files": [
+    "styles.css",
+    "index.js",
+    "index.d.ts",
+    "src/**/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "code",
+    "hightlight",
+    "hightlights",
+    "mdsvex",
+    "prismjs",
+    "shiki",
+    "svelte",
+    "sveltekit",
+    "syntax"
+  ],
+  "author": "mistweaverco and friends <open-source@mistweaverco.com>",
+  "license": "MIT",
+  "description": "Shiki syntax highlighter for mdsvex",
+  "private": true,
+  "packageManager": "bun@1.3.3",
+  "dependencies": {
+    "@shikijs/transformers": "3.19.0",
+    "shiki": "3.19.0"
+  },
+  "devDependencies": {
+    "@eslint/json": "0.14.0",
+    "@eslint/markdown": "7.5.1",
+    "@types/bun": "1.3.3",
+    "eslint": "9.39.1",
+    "prettier": "3.7.4",
+    "svelte": "5.45.10",
+    "typescript-eslint": "8.49.0"
+  },
+  "peerDependencies": {
+    "typescript": "5.9.3"
+  }
+}

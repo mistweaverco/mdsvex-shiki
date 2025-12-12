@@ -1,0 +1,56 @@
+:root {
+  --shiki-dark-bg: #1e1e1e;
+  --shiki-dark: #d4d4d4;
+  --shiki-dark-accent: #569cd6;
+  --shiki-dark-accent-active: #007acc;
+  --shiki-dark-border: #333333;
+  --shiki-dark-font-style: normal;
+  --shiki-dark-font-weight: 400;
+  --shiki-dark-text-decoration: none;
+}
+
+.mdsvex-shiki {
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+.mdsvex-shiki .header {
+  background-color: var(--shiki-dark-bg) !important;
+  border-bottom: 1px solid var(--shiki-dark-border) !important;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+}
+
+.mdsvex-shiki .header .language::before {
+  font-family: "Font Awesome 7 Free", sans-serif;
+  font-weight: 900;
+  content: "\f121";
+  margin-right: 0.5em;
+}
+
+.mdsvex-shiki .header .copy::after {
+  font-family: "Font Awesome 7 Free", sans-serif;
+  font-weight: 900;
+  content: "\f0c5";
+}
+
+.mdsvex-shiki .header .copy.copied::after {
+  content: "\f00c";
+}
+
+.mdsvex-shiki .header .copy {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  border: none;
+}
+
+.mdsvex-shiki .header .copy:hover {
+  cursor: pointer;
+  color: var(--shiki-dark-accent) !important;
+}
+
+.mdsvex-shiki .header .copy:active {
+  color: var(--shiki-dark-accent-active) !important;
+}
+
+/* TODO: add light theme styles */
