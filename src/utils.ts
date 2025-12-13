@@ -1,3 +1,5 @@
+import type { ElementContent, RootContent } from "hast";
+
 export const escapeHTML = (html: string): string => {
   return html
     .replace(/{/g, "&lbrace;")

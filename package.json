@@ -1,16 +1,17 @@
 {
   "name": "@mistweaverco/mdsvex-shiki",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "src/index.ts",
   "files": [
     "styles.css",
-    "index.js",
-    "index.d.ts",
-    "src/**/*"
+    "*.js",
+    "*.d.ts"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm run build",
+    "prepare": "tsc"
   },
   "keywords": [
     "code",

@@ -98,14 +98,6 @@ export const mdsvexWrapItUpTransformer = (
                   },
                   children: [],
                 },
-                {
-                  type: "element",
-                  tagName: "path",
-                  properties: {
-                    d: "M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z",
-                  },
-                  children: [],
-                },
               ],
             },
             {
@@ -156,9 +148,9 @@ export const mdsvexWrapItUpTransformer = (
                         properties: { class: "header" },
                         children: headerChildren,
                       },
-                      ...child.children,
+                      ...(child.children as ElementContent[]),
                     ],
-                  };
+                  } as ElementContent;
                 }
                 return child;
               }),
