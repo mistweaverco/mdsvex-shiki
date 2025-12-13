@@ -1,6 +1,6 @@
 # mdsvex-shiki
 
-Supports most [common transformers][mdsvex-transformers] out of the box.
+Supports most [common transformers][shiki-transformers] out of the box.
 
 ## Configuration
 

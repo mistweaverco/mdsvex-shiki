@@ -5,6 +5,17 @@ export const escapeHTML = (html: string): string => {
     .replace(/`/g, "&#96;");
 };
 
+// Helper function to extract text content from HAST nodes
+export function extractText(node: RootContent | ElementContent): string {
+  if (node.type === "text") {
+    return node.value;
+  }
+  if (node.type === "element" && node.children) {
+    return node.children.map((child) => extractText(child)).join("");
+  }
+  return "";
+}
+
 interface WrapItUpOptions {
   lang?: string;
   title?: string;
