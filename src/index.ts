@@ -6,15 +6,15 @@ import {
   transformerNotationHighlight,
   transformerNotationWordHighlight,
 } from "@shikijs/transformers";
-import { mdsvexWrapItUpTransformer } from "./transformers.ts";
+import { mdsvexWrapItUpTransformer } from "./transformers";
 import {
   type BundledLanguage,
   type BundledTheme,
   type CodeToHastOptions,
   codeToHtml,
 } from "shiki";
-import { escapeHTML } from "./utils.ts";
-export { copyAction } from "./copy-action.ts";
+import { escapeHTML } from "./utils";
+export { copyAction } from "./copy-action";
 
 type HighlighterOptions = {
   displayTitle?: boolean;

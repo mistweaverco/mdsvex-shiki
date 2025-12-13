@@ -1,7 +1,7 @@
 import type { ElementContent, Root, RootContent } from "hast";
 import { type ShikiTransformer } from "shiki";
-export { copyAction } from "./copy-action.ts";
-import { extractText } from "./utils.ts";
+export { copyAction } from "./copy-action";
+import { extractText } from "./utils";
 
 export const mdsvexWrapItUpTransformer = (
   lang: string,
