@@ -2,11 +2,12 @@
   "compilerOptions": {
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "target": "ESNext",
-    "module": "Preserve",
+    "module": "esnext",
     "moduleDetection": "force",
     "jsx": "react-jsx",
     "allowJs": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "allowImportingTsExtensions": false,
     "verbatimModuleSyntax": true,
     "emitDeclarationOnly": false,
@@ -17,6 +18,7 @@
     "noImplicitOverride": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "noEmit": true,
     "outDir": ".",
     "rootDir": "./src",
     "declaration": true

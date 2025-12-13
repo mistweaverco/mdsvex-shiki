@@ -41,7 +41,7 @@ export const defaultShikiOptions: Partial<
   ],
 };
 
-export default async (config: HighlighterOptions) => {
+export const mdsvexShiki = async (config: HighlighterOptions) => {
   const shikiOptions = {
     ...defaultShikiOptions,
     ...config.shikiOptions,
@@ -67,3 +67,5 @@ export default async (config: HighlighterOptions) => {
     return escapeHTML(await codeToHtml(code, shikiOptions));
   };
 };
+
+export default mdsvexShiki;

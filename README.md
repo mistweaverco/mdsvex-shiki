@@ -7,7 +7,7 @@ Supports most [common transformers][shiki-transformers] out of the box.
 Using bun:
 
 ```bash
-bun add https://github.com/mistweaverco/mdsvex-shiki#v1.0.0
+bun add @mistweaverco/mdsvex-shiki#v1.0.12
 ```
 
 ## Configuration
