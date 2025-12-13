@@ -1,8 +1,8 @@
 {
   "name": "@mistweaverco/mdsvex-shiki",
-  "version": "0.1.1",
+  "version": "1.0.2",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "index.js",
   "files": [
     "styles.css",
     "*.js",
