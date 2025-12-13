@@ -14,7 +14,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "bun run build",
     "clear": "rm -f *.js *.cjs *.d.ts",
-    "build": "bun build.ts"
+    "build": "bun build.ts",
+    "publish:npm": "npm publish --access public",
+    "publish:github": "npm publish --registry https://npm.pkg.github.com --access public"
   },
   "keywords": [
     "code",
@@ -50,3 +52,4 @@
     "typescript": "5.9.3"
   }
 }
+
