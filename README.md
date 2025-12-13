@@ -2,6 +2,14 @@
 
 Supports most [common transformers][shiki-transformers] out of the box.
 
+## Installation
+
+Using bun:
+
+```bash
+bun add https://github.com/mistweaverco/mdsvex-shiki#v1.0.0
+```
+
 ## Configuration
 
 Available options are as follows:
