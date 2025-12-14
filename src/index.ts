@@ -9,9 +9,11 @@ import {
 import { mdsvexWrapItUpTransformer } from "./transformers";
 import {
   type BundledLanguage,
+  bundledLanguages,
   type BundledTheme,
   type CodeToHastOptions,
-  codeToHtml,
+  createHighlighter,
+  type Highlighter,
 } from "shiki";
 import { escapeHTML } from "./utils";
 export { copyAction } from "./copy-action";
@@ -20,16 +22,18 @@ type HighlighterOptions = {
   displayTitle?: boolean;
   displayLanguage?: boolean;
   disableCopyButton?: boolean;
-  shikiOptions?: Partial<CodeToHastOptions<BundledLanguage, BundledTheme>>;
+  shikiOptions?: Partial<CodeToHastOptions<BundledLanguage, BundledTheme>> & {
+    themes?:
+      | BundledTheme[]
+      | { light: BundledTheme; dark: BundledTheme }
+      | BundledTheme;
+    langs?: BundledLanguage[] | "all";
+  };
 };
 
 export const defaultShikiOptions: Partial<
   CodeToHastOptions<BundledLanguage, BundledTheme>
 > = {
-  themes: {
-    dark: "catppuccin-mocha",
-    light: "catppuccin-mocha",
-  },
   cssVariablePrefix: "--shiki-",
   transformers: [
     transformerMetaHighlight(),
@@ -41,30 +45,101 @@ export const defaultShikiOptions: Partial<
   ],
 };
 
+const defaultThemes = {
+  dark: "catppuccin-mocha",
+  light: "catppuccin-mocha",
+} as const;
+
+let highlighterInstance: Highlighter | null = null;
+let highlighterPromise: Promise<Highlighter> | null = null;
+
+const getHighlighterInstance = async (
+  themes:
+    | BundledTheme[]
+    | { light: BundledTheme; dark: BundledTheme }
+    | BundledTheme,
+  langs: BundledLanguage[] | "all" = "all",
+): Promise<Highlighter> => {
+  if (highlighterInstance) {
+    return highlighterInstance;
+  }
+
+  if (highlighterPromise) {
+    return highlighterPromise;
+  }
+
+  const langsArray: BundledLanguage[] =
+    langs === "all"
+      ? (Object.keys(bundledLanguages) as BundledLanguage[])
+      : langs;
+
+  let themesArray: BundledTheme[];
+  if (Array.isArray(themes)) {
+    themesArray = themes;
+  } else if (
+    typeof themes === "object" &&
+    "light" in themes &&
+    "dark" in themes
+  ) {
+    themesArray = [themes.light, themes.dark];
+  } else {
+    themesArray = [themes];
+  }
+
+  const highlighterOptions: Parameters<typeof createHighlighter>[0] = {
+    themes: themesArray,
+    langs: langsArray,
+  };
+
+  highlighterPromise = createHighlighter(highlighterOptions);
+
+  highlighterInstance = await highlighterPromise;
+  return highlighterInstance;
+};
+
 export const mdsvexShiki = async (config: HighlighterOptions) => {
-  const shikiOptions = {
+  const themes = config.shikiOptions?.themes || defaultThemes;
+  const langs = config.shikiOptions?.langs || "all";
+
+  const shikiOptions: Partial<
+    CodeToHastOptions<BundledLanguage, BundledTheme>
+  > = {
     ...defaultShikiOptions,
     ...config.shikiOptions,
-  } as CodeToHastOptions<BundledLanguage, BundledTheme>;
+  };
+
+  delete (shikiOptions as any).themes;
+  delete (shikiOptions as any).langs;
+
+  await getHighlighterInstance(themes, langs);
 
   return async (code: string, lang: string) => {
     lang = lang ?? "text";
-    shikiOptions.lang = lang;
-    shikiOptions.transformers = [
-      ...defaultShikiOptions.transformers!,
-      ...shikiOptions.transformers!,
+
+    const highlighter = await getHighlighterInstance(themes, langs);
+
+    const transformers = [
+      ...(defaultShikiOptions.transformers || []),
+      ...(shikiOptions.transformers || []),
     ];
-    if (
-      shikiOptions.transformers.find(
-        (t) => t.name === "transformerMdsvexWrapItUp",
-      ) === undefined
-    ) {
-      shikiOptions.transformers.push(
+
+    if (!transformers.find((t) => t.name === "transformerMdsvexWrapItUp")) {
+      transformers.push(
         mdsvexWrapItUpTransformer(lang, code, config.disableCopyButton),
       );
     }
 
-    return escapeHTML(await codeToHtml(code, shikiOptions));
+    const html = highlighter.codeToHtml(code, {
+      ...shikiOptions,
+      lang,
+      transformers,
+      themes:
+        typeof themes === "object" && !Array.isArray(themes)
+          ? themes
+          : undefined,
+    } as CodeToHastOptions<BundledLanguage, BundledTheme>);
+
+    return escapeHTML(html);
   };
 };
 
