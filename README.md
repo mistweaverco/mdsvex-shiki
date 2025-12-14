@@ -1,13 +1,33 @@
 # mdsvex-shiki
 
-Supports most [common transformers][shiki-transformers] out of the box.
+A highlighter for mdsvex using Shiki with
+support for most [common transformers][shiki-transformers] out of the box.
+
+Why? Because mdsvex's built-in Prism highlighter is
+limited in features and customization options.
+
+We needed a better solution for our SvelteKit projects,
+so we created this package to fill the gap.
 
 ## Installation
 
-Using bun:
+Using your package manager of choice, run:
 
 ```bash
+# npm
+npm install @mistweaverco/mdsvex-shiki@v1.0.16
+
+# yarn
+yarn add @mistweaverco/mdsvex-shiki@v1.0.
+
+# bun
 bun add @mistweaverco/mdsvex-shiki@v1.0.16
+
+# pnpm
+pnpm add @mistweaverco/mdsvex-shiki@v1.0.16
+
+# deno
+deno add npm:@mistweaverco/mdsvex-shiki@v1.0.16
 ```
 
 ## Configuration
