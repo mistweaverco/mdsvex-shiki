@@ -9,6 +9,8 @@ limited in features and customization options.
 We needed a better solution for our SvelteKit projects,
 so we created this package to fill the gap.
 
+<img width="945" height="874" alt="Screenshot" src="https://github.com/user-attachments/assets/c717f559-ae96-4372-a1ac-3eba3d4db340" />
+
 ## Installation
 
 Using your package manager of choice, run:
