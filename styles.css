@@ -25,7 +25,7 @@
 }
 
 .mdsvex-shiki {
-  padding: 5px 15px;
+  padding: 12px 20px;
   background-color: var(--shiki-dark-bg);
   position: relative;
   border: 1px solid var(--shiki-dark-border);
@@ -56,6 +56,8 @@
 }
 
 .mdsvex-shiki .header .language {
+  right: 12px;
+  top: 8px;
   color: var(--shiki-dark);
   font-size: 0.875em;
   opacity: 0.7;
@@ -79,7 +81,8 @@
   color: var(--shiki-dark);
   background-color: transparent;
   border: none;
-  padding: 0.25em 0.5em;
+  right: 6px;
+  top: 8px;
   cursor: pointer;
   opacity: 0;
   display: flex;

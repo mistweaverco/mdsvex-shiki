@@ -1,6 +1,6 @@
 {
   "name": "@mistweaverco/mdsvex-shiki",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "type": "module",
   "main": "./index.cjs",
   "module": "./index.js",

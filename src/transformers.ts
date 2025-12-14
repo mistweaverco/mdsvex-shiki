@@ -137,20 +137,20 @@ export const mdsvexWrapItUpTransformer = (
               tabindex: "0",
             },
             children: [
-              ...(children as ElementContent[]).map((child) => {
+              ...(children as ElementContent[]).flatMap((child) => {
                 if (child.type === "element" && child.tagName === "pre") {
-                  return {
-                    ...child,
-                    children: [
-                      {
-                        type: "element",
-                        tagName: "div",
-                        properties: { class: "header" },
-                        children: headerChildren,
-                      },
-                      ...(child.children as ElementContent[]),
-                    ],
-                  } as ElementContent;
+                  return [
+                    {
+                      type: "element",
+                      tagName: "div",
+                      properties: { class: "header" },
+                      children: headerChildren,
+                    } as ElementContent,
+                    {
+                      ...child,
+                      children: child.children,
+                    } as ElementContent,
+                  ];
                 }
                 return child;
               }),
