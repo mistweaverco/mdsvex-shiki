@@ -7,17 +7,15 @@
   "types": "./index.d.ts",
   "exports": {
     ".": {
-      "types": "./index.d.ts",
-      "import": "./index.js",
-      "require": "./index.cjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./styles.css": "./styles.css"
   },
   "files": [
-    "styles.css",
-    "*.js",
-    "*.cjs",
-    "*.d.ts"
+    "dist/*.{js,cjs,d.ts,css}",
+    "styles.css"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
