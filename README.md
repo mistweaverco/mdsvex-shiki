@@ -18,19 +18,19 @@ Using your package manager of choice, run:
 
 ```bash
 # npm
-npm install @mistweaverco/mdsvex-shiki@v1.1.0
+npm install @mistweaverco/mdsvex-shiki@v1.1.1
 
 # yarn
-yarn add @mistweaverco/mdsvex-shiki@v1.1.0
+yarn add @mistweaverco/mdsvex-shiki@v1.1.1
 
 # bun
-bun add @mistweaverco/mdsvex-shiki@v1.1.0
+bun add @mistweaverco/mdsvex-shiki@v1.1.1
 
 # pnpm
-pnpm add @mistweaverco/mdsvex-shiki@v1.1.0
+pnpm add @mistweaverco/mdsvex-shiki@v1.1.1
 
 # deno
-deno add npm:@mistweaverco/mdsvex-shiki@v1.1.0
+deno add npm:@mistweaverco/mdsvex-shiki@v1.1.1
 ```
 
 ## Configuration
