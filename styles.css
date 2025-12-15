@@ -112,7 +112,8 @@
   align-items: center;
   gap: 0.25em;
   max-width: calc(100% - 100px);
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: auto;
   white-space: nowrap;
 }
 
