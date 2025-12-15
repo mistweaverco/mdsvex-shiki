@@ -17,27 +17,31 @@ Using your package manager of choice, run:
 
 ```bash
 # npm
-npm install @mistweaverco/mdsvex-shiki@v1.0.16
+npm install @mistweaverco/mdsvex-shiki@v1.1.0
 
 # yarn
-yarn add @mistweaverco/mdsvex-shiki@v1.0.
+yarn add @mistweaverco/mdsvex-shiki@v1.1.0
 
 # bun
-bun add @mistweaverco/mdsvex-shiki@v1.0.16
+bun add @mistweaverco/mdsvex-shiki@v1.1.0
 
 # pnpm
-pnpm add @mistweaverco/mdsvex-shiki@v1.0.16
+pnpm add @mistweaverco/mdsvex-shiki@v1.1.0
 
 # deno
-deno add npm:@mistweaverco/mdsvex-shiki@v1.0.16
+deno add npm:@mistweaverco/mdsvex-shiki@v1.1.0
 ```
 
 ## Configuration
 
 Available options are as follows:
 
-- `displayTitle`: Whether to show the title bar when a title is
-  provided in the code block info string. (default: `false`)
+- `displayPath`: Whether to show the file path in the title bar when
+  a path is provided. (default: `false`)
+  (e.g., `sh path=/path/to/file.sh`).
+  Paths are displayed with directory and file icons.
+  Long paths are collapsed
+  with a tooltip showing the full path.
 - `displayLang`: Whether to show the language label in
   the title bar. (default: `false`)
 - `disableCopyButton`: Whether to disable the copy button.
@@ -55,7 +59,7 @@ Available options are as follows:
 
 ```js
 const options = {
-  displayTitle: true,
+  displayPath: true,
   displayLang: true,
   shikiOptions: {
     theme: 'nord',
@@ -68,7 +72,7 @@ const options = {
 If you just want to basic Shiki styling without the bar,
 you don't need to import this CSS file.
 
-If you to display the title, language and/or copy button,
+If you want to display the path, language and/or copy button,
 you **must** import the CSS file.
 
 Probably in the root layout or HTML file that wraps your markdown content.
@@ -126,7 +130,7 @@ const config = {
       // ...
       highlight: {
         highlighter: await mdsvexShiki({
-          displayTitle: true,
+          displayPath: true,
           displayLang: true,
           shikiOptions: {
             // Shiki options

@@ -38,32 +38,27 @@
 }
 
 .mdsvex-shiki .header {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 10;
   background-color: transparent;
-  padding: 0.5em 1em;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .mdsvex-shiki .header > * {
   pointer-events: auto;
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: relative;
   transition: opacity 0.2s ease;
 }
 
 .mdsvex-shiki .header .language {
-  right: 12px;
-  top: 8px;
   color: var(--shiki-dark);
   font-size: 0.875em;
   opacity: 0.7;
   display: flex;
   align-items: center;
   gap: 0.5em;
+  margin-left: auto;
 }
 
 .mdsvex-shiki .header .language .icon {
@@ -72,27 +67,15 @@
   flex-shrink: 0;
 }
 
-.mdsvex-shiki:hover .header .language,
-.mdsvex-shiki:focus-within .header .language {
-  opacity: 0;
-}
-
 .mdsvex-shiki .header .copy {
   color: var(--shiki-dark);
   background-color: transparent;
   border: none;
-  right: 6px;
-  top: 8px;
   cursor: pointer;
-  opacity: 0;
+  opacity: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.mdsvex-shiki:hover .header .copy,
-.mdsvex-shiki:focus-within .header .copy {
-  opacity: 1;
 }
 
 .mdsvex-shiki .header .copy .icon {
@@ -119,5 +102,44 @@
 
 .mdsvex-shiki .header .copy:active {
   color: var(--shiki-dark-accent-active);
+}
+
+.mdsvex-shiki .header .path {
+  color: var(--shiki-dark);
+  font-size: 0.875em;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  max-width: calc(100% - 100px);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mdsvex-shiki .header .path .icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.mdsvex-shiki .header .path .path-segment {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.mdsvex-shiki .header .path .path-separator {
+  color: var(--shiki-dark);
+  opacity: 0.5;
+  margin: 0 0.125em;
+}
+
+.mdsvex-shiki .header .path .path-segment.collapsed {
+  cursor: help;
+}
+
+.mdsvex-shiki:hover .header .path,
+.mdsvex-shiki:focus-within .header .path {
+  opacity: 1;
 }
 

@@ -19,7 +19,7 @@ import { escapeHTML } from "./utils";
 export { copyAction } from "./copy-action";
 
 type HighlighterOptions = {
-  displayTitle?: boolean;
+  displayPath?: boolean;
   displayLanguage?: boolean;
   disableCopyButton?: boolean;
   shikiOptions?: Partial<CodeToHastOptions<BundledLanguage, BundledTheme>> & {
@@ -113,7 +113,7 @@ export const mdsvexShiki = async (config: HighlighterOptions) => {
 
   await getHighlighterInstance(themes, langs);
 
-  return async (code: string, lang: string) => {
+  return async (code: string, lang: string, meta?: string): Promise<string> => {
     lang = lang ?? "text";
 
     const highlighter = await getHighlighterInstance(themes, langs);
@@ -124,9 +124,7 @@ export const mdsvexShiki = async (config: HighlighterOptions) => {
     ];
 
     if (!transformers.find((t) => t.name === "transformerMdsvexWrapItUp")) {
-      transformers.push(
-        mdsvexWrapItUpTransformer(lang, code, config.disableCopyButton),
-      );
+      transformers.push(mdsvexWrapItUpTransformer(lang, code, meta, config));
     }
 
     const html = highlighter.codeToHtml(code, {

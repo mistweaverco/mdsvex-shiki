@@ -19,9 +19,7 @@ coverage
 .nyc_output
 
 # Distribution files
-/*.js
-/*.cjs
-/*.d.ts
+/dist
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
