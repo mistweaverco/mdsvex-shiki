@@ -18,19 +18,19 @@ Using your package manager of choice, run:
 
 ```bash
 # npm
-npm install @mistweaverco/mdsvex-shiki@v1.1.1
+npm install @mistweaverco/mdsvex-shiki@v1.3.0
 
 # yarn
-yarn add @mistweaverco/mdsvex-shiki@v1.1.1
+yarn add @mistweaverco/mdsvex-shiki@v1.3.0
 
 # bun
-bun add @mistweaverco/mdsvex-shiki@v1.1.1
+bun add @mistweaverco/mdsvex-shiki@v1.3.0
 
 # pnpm
-pnpm add @mistweaverco/mdsvex-shiki@v1.1.1
+pnpm add @mistweaverco/mdsvex-shiki@v1.3.0
 
 # deno
-deno add npm:@mistweaverco/mdsvex-shiki@v1.1.1
+deno add npm:@mistweaverco/mdsvex-shiki@v1.3.0
 ```
 
 ## Configuration
@@ -96,7 +96,7 @@ In your layout file (e.g., `src/routes/blog/+layout.svelte`):
 
 ```svelte
 <script>
-  import { copyAction } from '@mistweaverco/mdsvex-shiki';
+  import { copyAction } from '@mistweaverco/mdsvex-shiki/copyAction';
 </script>
 
 <div use:copyAction>

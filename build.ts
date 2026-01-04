@@ -6,6 +6,11 @@ const defaultBuildConfig: BuildConfig = {
   outdir: "dist",
 };
 
+const copyAction: BuildConfig = {
+  entrypoints: ["./src/copy-action.ts"],
+  outdir: "dist",
+};
+
 await Promise.all([
   Bun.build({
     ...defaultBuildConfig,
@@ -15,6 +20,17 @@ await Promise.all([
   }),
   Bun.build({
     ...defaultBuildConfig,
+    format: "cjs",
+    naming: "[dir]/[name].cjs",
+  }),
+  Bun.build({
+    ...copyAction,
+    plugins: [dts()],
+    format: "esm",
+    naming: "[dir]/[name].js",
+  }),
+  Bun.build({
+    ...copyAction,
     format: "cjs",
     naming: "[dir]/[name].cjs",
   }),

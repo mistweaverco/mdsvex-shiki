@@ -16,7 +16,6 @@ import {
   type Highlighter,
 } from "shiki";
 import { escapeHTML } from "./utils";
-export { copyAction } from "./copy-action";
 
 type HighlighterOptions = {
   displayPath?: boolean;
