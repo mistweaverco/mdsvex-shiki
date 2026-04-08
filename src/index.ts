@@ -17,7 +17,13 @@ import {
 } from "shiki";
 import { escapeHTML } from "./utils";
 
-export type { BundledLanguage, BundledTheme, Highlighter } from "shiki";
+export type MdsvexHighlighter = (
+  code: string,
+  lang: string | null | undefined,
+  metastring: string | null | undefined,
+  filename?: string,
+  optimise?: boolean,
+) => string;
 
 export type HighlighterOptions = {
   displayPath?: boolean;
@@ -98,7 +104,9 @@ const getHighlighterInstance = async (
   return highlighterInstance;
 };
 
-export const mdsvexShiki = async (config: HighlighterOptions) => {
+export const getMdsvexShikiHighlighter = async (
+  config: HighlighterOptions,
+): Promise<MdsvexHighlighter> => {
   const themes = config.shikiOptions?.themes || defaultThemes;
   const langs = config.shikiOptions?.langs || "all";
 
@@ -112,16 +120,15 @@ export const mdsvexShiki = async (config: HighlighterOptions) => {
   delete (shikiOptions as any).themes;
   delete (shikiOptions as any).langs;
 
-  await getHighlighterInstance(themes, langs);
+  const highlighter = await getHighlighterInstance(themes, langs);
 
-  return async (
+  return (
     code: string,
-    lang: string,
-    meta?: string,
-  ): Promise<Highlighter> => {
+    lang: string | null | undefined,
+    meta: string | null | undefined,
+  ): string => {
     lang = lang ?? "text";
-
-    const highlighter = await getHighlighterInstance(themes, langs);
+    meta = meta ?? undefined;
 
     const transformers = [
       ...(defaultShikiOptions.transformers || []),
@@ -142,8 +149,6 @@ export const mdsvexShiki = async (config: HighlighterOptions) => {
           : undefined,
     } as CodeToHastOptions<BundledLanguage, BundledTheme>);
 
-    return escapeHTML(html) as unknown as Highlighter;
+    return escapeHTML(html);
   };
 };
-
-export default mdsvexShiki;

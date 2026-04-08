@@ -18,19 +18,19 @@ Using your package manager of choice, run:
 
 ```bash
 # npm
-npm install @mistweaverco/mdsvex-shiki@v1.3.0
+npm install @mistweaverco/mdsvex-shiki@v1.3.6
 
 # yarn
-yarn add @mistweaverco/mdsvex-shiki@v1.3.0
+yarn add @mistweaverco/mdsvex-shiki@v1.3.6
 
 # bun
-bun add @mistweaverco/mdsvex-shiki@v1.3.0
+bun add @mistweaverco/mdsvex-shiki@v1.3.6
 
 # pnpm
-pnpm add @mistweaverco/mdsvex-shiki@v1.3.0
+pnpm add @mistweaverco/mdsvex-shiki@v1.3.6
 
 # deno
-deno add npm:@mistweaverco/mdsvex-shiki@v1.3.0
+deno add npm:@mistweaverco/mdsvex-shiki@v1.3.6
 ```
 
 ## Configuration
@@ -121,7 +121,7 @@ the clipboard when clicked and show a "Copied!" feedback message.
 
 In `svelte.config.js`:
 ```js
-import mdsvexShiki from 'mdsvex-shiki'
+import { getMdsvexShikiHighlighter } from 'mdsvex-shiki'
 
 const config = {
   // ...
@@ -130,7 +130,7 @@ const config = {
     mdsvex({
       // ...
       highlight: {
-        highlighter: await mdsvexShiki({
+        highlighter: await getMdsvexShikiHighlighter({
           displayPath: true,
           displayLang: true,
           shikiOptions: {
