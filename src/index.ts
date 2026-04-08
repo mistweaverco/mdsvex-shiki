@@ -17,7 +17,9 @@ import {
 } from "shiki";
 import { escapeHTML } from "./utils";
 
-type HighlighterOptions = {
+export type { BundledLanguage, BundledTheme, Highlighter } from "shiki";
+
+export type HighlighterOptions = {
   displayPath?: boolean;
   displayLanguage?: boolean;
   disableCopyButton?: boolean;
@@ -112,7 +114,11 @@ export const mdsvexShiki = async (config: HighlighterOptions) => {
 
   await getHighlighterInstance(themes, langs);
 
-  return async (code: string, lang: string, meta?: string): Promise<string> => {
+  return async (
+    code: string,
+    lang: string,
+    meta?: string,
+  ): Promise<Highlighter> => {
     lang = lang ?? "text";
 
     const highlighter = await getHighlighterInstance(themes, langs);
@@ -136,7 +142,7 @@ export const mdsvexShiki = async (config: HighlighterOptions) => {
           : undefined,
     } as CodeToHastOptions<BundledLanguage, BundledTheme>);
 
-    return escapeHTML(html);
+    return escapeHTML(html) as unknown as Highlighter;
   };
 };
 
