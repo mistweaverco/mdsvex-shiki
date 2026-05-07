@@ -18,20 +18,25 @@ Using your package manager of choice, run:
 
 ```bash
 # npm
-npm install @mistweaverco/mdsvex-shiki@v1.3.6
+npm install @mistweaverco/mdsvex-shiki@v1.3.7
 
 # yarn
-yarn add @mistweaverco/mdsvex-shiki@v1.3.6
+yarn add @mistweaverco/mdsvex-shiki@v1.3.7
 
 # bun
-bun add @mistweaverco/mdsvex-shiki@v1.3.6
+bun add @mistweaverco/mdsvex-shiki@v1.3.7
 
 # pnpm
-pnpm add @mistweaverco/mdsvex-shiki@v1.3.6
+pnpm add @mistweaverco/mdsvex-shiki@v1.3.7
 
 # deno
-deno add npm:@mistweaverco/mdsvex-shiki@v1.3.6
+deno add npm:@mistweaverco/mdsvex-shiki@v1.3.7
 ```
+
+> [!WARNING]
+> You don't need to install Shiki separately,
+> as it's directly "baked" into this package.
+> This will just double your modules size if you do.
 
 ## Configuration
 
@@ -120,6 +125,7 @@ The copy button will automatically copy the code content to
 the clipboard when clicked and show a "Copied!" feedback message.
 
 In `svelte.config.js`:
+
 ```js
 import { getMdsvexShikiHighlighter } from 'mdsvex-shiki'
 

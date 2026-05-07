@@ -1,7 +1,7 @@
 import type { BuildConfig } from "bun";
 import dts from "bun-plugin-dts";
 
-const external = ["shiki", "@shikijs/transformers", "svelte"];
+const external = ["svelte"];
 
 const defaultBuildConfig: BuildConfig = {
   entrypoints: ["./src/index.ts"],
