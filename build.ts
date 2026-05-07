@@ -1,14 +1,18 @@
 import type { BuildConfig } from "bun";
 import dts from "bun-plugin-dts";
 
+const external = ["shiki", "@shikijs/transformers", "svelte"];
+
 const defaultBuildConfig: BuildConfig = {
   entrypoints: ["./src/index.ts"],
   outdir: "dist",
+  external,
 };
 
 const copyAction: BuildConfig = {
   entrypoints: ["./src/copy-action.ts"],
   outdir: "dist",
+  external,
 };
 
 await Promise.all([
