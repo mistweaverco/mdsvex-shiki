@@ -1,11 +1,23 @@
 import type { ElementContent, RootContent } from "hast";
 
-export const escapeHTML = (html: string): string => {
-  return html
-    .replace(/{/g, "&lbrace;")
-    .replace(/}/g, "&rbrace;")
-    .replace(/`/g, "&#96;");
-};
+/**
+ * Escape characters that break Svelte compilation when highlighted HTML is
+ * embedded in a `.svelte` / `.svx` file. Matches mdsvex `escapeSvelte` so
+ * output is safe both as raw markup and inside `{@html \`...\`}` when
+ * `highlight.optimise` is true.
+ */
+export function escapeSvelte(str: string): string {
+  return str
+    .replace(/[{}`]/g, (c) => {
+      const map: Record<string, string> = {
+        "{": "&#123;",
+        "}": "&#125;",
+        "`": "&#96;",
+      };
+      return map[c] ?? c;
+    })
+    .replace(/\\([trn])/g, "&#92;$1");
+}
 
 // Helper function to extract text content from HAST nodes
 export function extractText(node: RootContent | ElementContent): string {
