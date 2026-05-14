@@ -18,19 +18,19 @@ Using your package manager of choice, run:
 
 ```bash
 # npm
-npm install @mistweaverco/mdsvex-shiki@v1.3.7
+npm install @mistweaverco/mdsvex-shiki@v1.4.0
 
 # yarn
-yarn add @mistweaverco/mdsvex-shiki@v1.3.7
+yarn add @mistweaverco/mdsvex-shiki@v1.4.0
 
 # bun
-bun add @mistweaverco/mdsvex-shiki@v1.3.7
+bun add @mistweaverco/mdsvex-shiki@v1.4.0
 
 # pnpm
-pnpm add @mistweaverco/mdsvex-shiki@v1.3.7
+pnpm add @mistweaverco/mdsvex-shiki@v1.4.0
 
 # deno
-deno add npm:@mistweaverco/mdsvex-shiki@v1.3.7
+deno add npm:@mistweaverco/mdsvex-shiki@v1.4.0
 ```
 
 > [!WARNING]
@@ -113,7 +113,7 @@ Or if you're rendering markdown content directly:
 
 ```svelte
 <script>
-  import { copyAction } from '@mistweaverco/mdsvex-shiki';
+  import { copyAction } from '@mistweaverco/mdsvex-shiki/copyAction';
 </script>
 
 <div use:copyAction>
@@ -123,6 +123,35 @@ Or if you're rendering markdown content directly:
 
 The copy button will automatically copy the code content to
 the clipboard when clicked and show a "Copied!" feedback message.
+
+### Highlighting in a `.svelte` file (without mdsvex)
+
+Use `highlightForSvelte` with a highlighter instance when
+you want to reuse the same Shiki setup for
+several blocks.
+
+For example after a single
+`await getMdsvexShikiHighlighter` in a layout or load function:
+
+```svelte
+<script>
+  import { getMdsvexShikiHighlighter, highlightForSvelte } from '@mistweaverco/mdsvex-shiki';
+
+  const hl = await getMdsvexShikiHighlighter({ /* … */ });
+  const code = 'const x = 1;';
+  const html = await highlightForSvelte(hl, code, 'ts');
+</script>
+```
+
+Here `code` is the string you want
+highlighted (for example from props or a fetch).
+
+Render the string with a single `{@html ...}`
+(for example `<div>{@html html}</div>`).
+
+Using `copyAction` on a wrapper and
+importing `styles.css` for the title bar
+and copy button works the same way as in the sections above.
 
 In `svelte.config.js`:
 
