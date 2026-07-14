@@ -236,7 +236,7 @@ export const mdsvexWrapItUpTransformer = (
             tagName: "div",
             properties: {
               class: "mdsvex-shiki",
-              tabindex: "0",
+              tabindex: "-1",
             },
             children: [
               ...(children as ElementContent[]).flatMap((child) => {
